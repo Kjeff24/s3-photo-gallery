@@ -6,7 +6,7 @@ const PhotoCard = ({ photo }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/photo/${photo._id}`);
+    navigate(`/photo/${photo.id}`);
   };
 
   return (
