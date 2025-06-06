@@ -235,9 +235,13 @@ export const likePhoto = async (req, res, next) => {
     photo.likes += 1;
     await photo.save();
     
+    // Generate presigned URL for response
+    const photoData = photo.toJSON();
+    photoData.imageUrl = await generatePresignedGetUrl(photo.s3Key);
+    
     res.status(200).json({
       success: true,
-      data: photo,
+      data: photoData,
     });
   } catch (error) {
     next(error);
